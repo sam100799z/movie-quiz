@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the movie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Itim&display=swap"   rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+  <section>
+
+    <div class="container">
+      
+      <h1>Cine Ecstacy</h1>
+      <h2><%= locals.plot %></h2>
+      <h3>Your Score: <%= locals.score %></h3>
+      
+      
+      <form action="/submit" method="post">
+        <input type="text" name="userInput" placeholder="Guess this film">
+        <button type="submit">Action!!</button>
+      </form>
+      
+      
+    </div>
+    
+  </section>
+    
+  </body>
+  </html>
