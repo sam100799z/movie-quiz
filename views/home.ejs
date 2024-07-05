@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Cine Ecstacy - Guess the movie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Itim&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+    <style>
+        h1
+        {
+            margin-bottom: 25px;
+        }
+        h2{
+            color: white;
+        }
+
+        @media screen and (min-width: 600px) {
+            
+            button
+            {
+                width: 350px;
+            }
+        }
+         
+         p
+         {
+            font-size: 12px;
+            font-weight: 400;
+         }
+         p.trivia-answer
+         {
+            margin-top: 5px;
+            font-size: 12px;
+            font-weight: 900;
+         }
+    </style>
+</head>
+
+<body>
+
+    <section>
+
+        <div class="container home">
+
+            <h1>Cine Ecstacy</h1>
+
+            <h2>
+                Welcome! Guess the movie from its plot and win.
+            </h2>
+
+            <div class="card trivia glass-box">
+                <h2>Film trivia</h2>
+                <p ><%= triviaData.question %></p>
+                <p class="trivia-answer"><%= triviaData.correct_answer %></p>
+            </div>
+
+
+            <!-- notice something interesting here which is location.href -->
+
+            <button onclick="location.href='/game'">Let's Play!</button>
+
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Ecstacy - Guess the movie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Itim&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    h1 {
+      font-size: 64px;
+      margin-bottom: 40px;
+      width: 90%;
+    }
+
+    img
+      {
+        width: 400px;
+      }
+
+    .content
+    {
+      display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 35px;
+    }
+
+    p 
+    {
+      font-size: 18px;
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button {
+      width: 60%;
+    }
+
+    @media only screen and (max-width: 1000px) {
+      section 
+      {
+        padding-top: 40px;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 35px;
+      }
+
+      button {
+      width: 90%;
+    }
+
+      img
+      {
+        width: 300px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 400;
+      }
+      body
+      {
+        height: auto;
+      }
+    }
+    @media only screen and (max-width: 600px)
+    {
+      .content
+      {
+        margin-bottom: 20px;
+      }
+      h1 
+      {
+        font-size: 48px;
+        margin-bottom: 15px;
+      }
+      img 
+      {
+        width: 180px;
+      }
+      p
+      {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+
+    <div class="container">
+
+      <h1>
+        <%= locals.movieTitle %>
+      </h1>
+
+      <div class="content">
+
+
+
+        <img src="<%= locals.source %>" alt="poster" width="250" id="poster">
+        <p>
+          <%= locals.description %>
+        </p>
+
+      </div>
+
+
+
+      <form action="/game" method="get">
+        <button type="submit">Try Again</button>
+      </form>
+
+
+    </div>
+
+  </section>
+</body>
+
+</html>
