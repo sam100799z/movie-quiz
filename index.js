@@ -71,7 +71,7 @@ async function film() {
 
     const data = response.data;
 
-    console.log(data);
+    // console.log(data);
     return data;
 
     //   const response = await axios.request(options);
