@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guess the movie</title>
+  <title>Cine Ecstacy - Guess the movie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Itim&display=swap"   rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Bungee+Shade&family=Itim&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="/styles/main.css">
 </head>
+
 <body>
 
   <section>
 
     <div class="container">
-      
+
       <h1>Cine Ecstacy</h1>
-      <h2><%= locals.plot %></h2>
-      <h3>Your Score: <%= locals.score %></h3>
-      
-      
-      <form action="/submit" method="post">
-        <input type="text" name="userInput" placeholder="Guess this film">
-        <button type="submit">Action!!</button>
+
+
+      <div class="content">
+
+        <img class="poster" src="<%= locals.source %>" width="60" alt="poster" id="poster">
+        <p><span class="plot">Plot: </span>
+          <%= locals.description%>
+        </p>
+
+      </div>
+
+
+
+      <form action="/game" method="post">
+        <% if (locals.score) { %>
+          <h2>Score: <%= locals.score %>
+          </h2>
+          <% } %>
+            <input type="text" name="movieTitle" placeholder="Enter Movie Title" required>
+            <div class="buttons">
+              <button type="submit">Action!!!</button>
+              <button id="sec" type="button">Hint Poster</button>
+            </div>
       </form>
-      
-      
+
+
     </div>
-    
+
   </section>
-    
-  </body>
-  </html>
+
+  <script>
+    let button = document.getElementById('sec');
+    button.addEventListener('click', () => {
+      document.getElementById('poster').classList.toggle('poster');
+      if (poster.classList.contains('poster')) {
+        button.textContent = 'Hint Poster';
+      } else {
+        button.textContent = 'Hide Poster';
+      }
+    })
+  </script>
+
+</body>
+
+</html>
