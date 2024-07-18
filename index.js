@@ -9,19 +9,29 @@ const API_URL = "https://www.omdbapi.com";
 //   },
 // };
 
-import express, { Router } from "express";
+import express from 'express';
+import axios from 'axios';
+import bodyParser from 'body-parser';
+import csv from 'csvtojson';
+import dotenv from 'dotenv';
+import session from 'express-session';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+dotenv.config();
+
 const app = express();
 const port = process.env.PORT || 3000;
-import axios from "axios";
-import bodyParser from "body-parser";
-import csv from "csvtojson";
-import env from "dotenv";
-env.config();
-import session from "express-session";
+
+// Get the current file path and directory name
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
-app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(
   session({
     secret: process.env.SECRET,
@@ -30,16 +40,17 @@ app.use(
   })
 );
 
-async function filmTitle () 
-{
-    var randNumber = Math.random() * 250;
-    var index = Math.floor(randNumber);
 
-    // Load the films
-    var films = await csv().fromFile("./IMDB Top 250 Movies.csv");
-    
+async function filmTitle() {
+  var randNumber = Math.random() * 250;
+  var index = Math.floor(randNumber);
 
-return films[index].name;
+  // Load the films
+  // var films = await csv().fromFile("./IMDB Top 250 Movies.csv");
+  const films = await csv().fromFile(path.join(__dirname, 'IMDB Top 250 Movies.csv'));
+
+
+  return films[index].name;
 
 };
 
@@ -64,38 +75,30 @@ async function film() {
   // }
 
   try {
-    const movieTitle = await filmTitle(); 
+    const movieTitle = await filmTitle();
 
 
     const response = await axios.get(`${API_URL}/?apikey=${process.env.KEY}&t=${movieTitle}`);
 
     const data = response.data;
 
-    // console.log(data);
+    console.log(data);
     return data;
 
     //   const response = await axios.request(options);
-  //   const randNumber = Math.random() * 100;
-  //   const index = Math.floor(randNumber);
-  //   const film = response.data[index];
+    //   const randNumber = Math.random() * 100;
+    //   const index = Math.floor(randNumber);
+    //   const film = response.data[index];
 
     // const question = data.Plot;
     // return question;
-    
-} 
-catch (error) {
 
-    console.error(error);     
-    
-}
+  }
+  catch (error) {
 
+    console.error(error);
 
-
-
-
-
-
-
+  }
 
 }
 
@@ -107,7 +110,7 @@ app.get("/", async (req, res) => {
   const triviaData = trivia.data.results[0];
 
   // removing stuff like &quot;, &amp;, &#039; from the trivia data
-  triviaData.question = triviaData.question 
+  triviaData.question = triviaData.question
     .replace(/&quot;/g, '"')
     .replace(/&amp;/g, "&")
     .replace(/&#039;/g, "'");
@@ -127,7 +130,7 @@ app.get("/game", async (req, res, next) => {
       Plot,
       Poster,
       Genre,
-      imdbRating, 
+      imdbRating,
       Released,
       Director,
       Actors,
