@@ -11,7 +11,7 @@ const API_URL = "https://www.omdbapi.com";
 
 import express, { Router } from "express";
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 import axios from "axios";
 import bodyParser from "body-parser";
 import csv from "csvtojson";
